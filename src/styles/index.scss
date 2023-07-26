@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500&display=swap');
+@import "reset";
+
+.App {
+  display: flex;
+  font-family: 'Montserrat', sans-serif;
+  line-height: 30px;
+  background: #232323;
+  color: white;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+span {
+  font-weight: bold;
+}
