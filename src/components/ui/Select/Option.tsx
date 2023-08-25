@@ -18,7 +18,7 @@ export const Option = (props: OptionProps) => {
     };
 
   return (
-    <li value={value} onClick={handleClick(value)} tabIndex={0}>
+    <li value={value} onClick={handleClick(value)} tabIndex={0} style={{cursor: 'pointer'}}>
       {title}
     </li>
   );

@@ -1,18 +1,19 @@
-import { MouseEventHandler, useEffect, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { Option } from "./Option";
-// import  ArrowDown from './../../../assets/arrow.svg';
+import { ReactComponent as ArrowIcon } from "./../../../assets/arrow-down.svg";
+import styles from "./index.module.css";
 
 type SelectProps = {
   selected: Option | null;
   options: Option[];
-  placeholder?: Option['title'];
+  placeholder?: Option["title"];
   mode?: "rows" | "cells";
   status?: "default" | "invalid";
   onChange?: (selected: Option["value"]) => void;
   onClose?: () => void;
 };
 
-export const Select = (props: SelectProps) => {
+export const Select: FC<SelectProps> = props => {
   const {
     mode = "rows",
     options,
@@ -45,24 +46,27 @@ export const Select = (props: SelectProps) => {
     setIsOpen(false);
     onChange?.(value);
   };
-  const handlePlaceHolderClick: MouseEventHandler<HTMLDivElement> = () => {
+  const handlePlaceHolderClick = () => {
     setIsOpen((prev) => !prev);
   };
 
   return (
     <div ref={rootRef} data-is-active={isOpen} data-mode={mode}>
-      <div>arrow</div>
-      <div
-        data-status={status}
-        data-selected={!!selected?.value}
-        onClick={handlePlaceHolderClick}
-        role="button"
-        tabIndex={0}
-      >
-        {selected?.title || placeholder}
+      <div className={styles.select}>
+        <div
+          data-status={status}
+          data-selected={!!selected?.value}
+          role="button"
+          tabIndex={0}
+        >
+          {selected?.title || placeholder}
+        </div>
+        <button onClick={handlePlaceHolderClick}>
+          <ArrowIcon />
+        </button>
       </div>
       {isOpen && (
-        <ul>
+        <ul className={styles.select__list}>
           {options.map((option) => (
             <Option
               key={option.value}
