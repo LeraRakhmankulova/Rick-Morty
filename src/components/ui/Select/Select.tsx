@@ -1,12 +1,11 @@
 import { FC, useEffect, useRef, useState } from "react";
 import { Option } from "./Option";
-import { ReactComponent as ArrowIcon } from "./../../../assets/arrow-down.svg";
+import arrow from "./../../../assets/arrow-down.svg";
 import styles from "./index.module.css";
 
 type SelectProps = {
   selected: Option | null;
   options: Option[];
-  placeholder?: Option["title"];
   mode?: "rows" | "cells";
   status?: "default" | "invalid";
   onChange?: (selected: Option["value"]) => void;
@@ -17,7 +16,6 @@ export const Select: FC<SelectProps> = props => {
   const {
     mode = "rows",
     options,
-    placeholder,
     status = "default",
     selected,
     onChange,
@@ -59,10 +57,10 @@ export const Select: FC<SelectProps> = props => {
           role="button"
           tabIndex={0}
         >
-          {selected?.title || placeholder}
+          {selected?.title}
         </div>
         <button onClick={handlePlaceHolderClick}>
-          <ArrowIcon />
+          <img src={arrow} alt="arrow" className={isOpen? styles.revert_img : ''}/>
         </button>
       </div>
       {isOpen && (

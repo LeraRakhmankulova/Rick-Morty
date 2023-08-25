@@ -13,3 +13,14 @@
     width: 380px;
     padding: 9px 20px;   
 }
+.revert_img{
+    transform: scale(1, -1);
+    transition: all .2s;
+}
+.li{
+    cursor: pointer;
+    &:hover{
+        color: #020797;
+        transition: all .4s;
+    }
+}
