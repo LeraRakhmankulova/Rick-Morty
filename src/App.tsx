@@ -1,33 +1,37 @@
+import { useState } from "react";
+import { Select } from "./components/ui/Select/Select";
 import "./styles/index.scss"
-
-import {useQuery} from "react-query";
-import Card from "./components/card";
-import {Data} from "./components/card/interface";
-import Sidebar from "./components/sidebar";
+import {Option} from './components/ui/Select/Option'
 
 const App = () => {
-    const {isLoading, error, data} = useQuery(
-        'repoData',
-        () =>
-            fetch(
-                'https://rickandmortyapi.com/api/character',
-            ).then((response) => response.json())
-                .then(data => data.results)
-    );
-
-    if (isLoading) return <p>Загрузка...</p>;
-
-    if (error) { // @ts-ignore
-        return <p>Ошибка: {error.message}</p>;
-    }
+    const [month, setMonthValue] = useState('');
+  const handleMonthSelect = (value: string) => {
+    setMonthValue(value);
+  };
+    const options: Option[] =[
+        {
+            value: "year",
+            title: "За последний месяц"
+        },
+        {
+            value: "half_year",
+            title: "За последние 6 месяцев"
+        },
+        {
+            value: "month",
+            title: "За последний год"
+        }
+    ]
+    const selectedMonth = options.find((item) => item.value === month);
     return (
         <div className="App">
-            <Sidebar/>
-            <div className="cards">
-                {data.map((el: Data) =>
-                    <Card data={el} key={el.id}/>)
-                }
-            </div>
+         <Select
+          mode='cells'
+          options={options}
+          selected={selectedMonth || null}
+          onChange={handleMonthSelect}
+          placeholder='Выберите месяц'
+        />
         </div>
     );
 }
