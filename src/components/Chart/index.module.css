@@ -16,18 +16,32 @@
     white-space: nowrap;
 }
 .chart__bars{
+    
+    position: relative;
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
 .bar{
-    height: 280px;
+    height: 250px;
     width: 18px;
     background: #000AFF;
     border-radius: 6px;
     transition: all .3s;
     &:hover{
+        &::before{
+            font-size: 16px;
+            position: absolute;
+            top: -15px;
+            content: '510';
+            border-radius: 5px;
+            background: #00ff2f;
+            color: black;
+            padding: 2px 10px;
+            
+        }
         box-shadow: 0px 0px 17px #0008ff87;
+        transform: scaleY(20px);
         transition: all .3s;
     }
     /* animation: fill 5s 1 reverse; */

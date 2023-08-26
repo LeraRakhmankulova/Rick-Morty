@@ -4,7 +4,7 @@ import { Bar } from "./Bar";
 import styles from "./index.module.css";
 import { Option } from "../ui/Select/Option";
 
-export const Chart: FC<{ period: Option["value"] }> = ({ period }) => {
+export const Chart: FC<{ period: string }> = ({ period }) => {
   const months: Record<string, string> = {
     January: "Янв",
     February: "Фев",
@@ -45,11 +45,11 @@ export const Chart: FC<{ period: Option["value"] }> = ({ period }) => {
         <li>0</li>
       </ul>
       <div className={styles.chart__bars}>
-        {Object.keys(periodsMock["periods"][0]["graph"]["year"]).map(
+        {Object.keys(periodsMock["periods"][0]["graph"][`${period}`]).map(
           (el: string, idx: number) => (
             <div className={styles.bar__info} key={idx}>
               <Bar />
-              <div className={styles.date}>{months[el]}</div>
+              <div className={styles.date}>{period === 'months'? el : months[el]}</div>
             </div>
           )
         )}

@@ -1,4 +1,4 @@
-export const periodsMock = {
+export const periodsMock: any= {
     "periods": [
         {
             "earnings": {
