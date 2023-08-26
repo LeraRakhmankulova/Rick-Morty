@@ -5,20 +5,7 @@ import { Option } from "./components/ui/Select/Option";
 import { Chart } from "./components/Chart/Chart";
 
 const App = () => {
-  const months = {
-    January: 'Янв',
-    February: 'Фев',
-    March: 'Март',
-    April: 'Апр',
-    May: 'Май',
-    June: 'Июнь',
-    July: 'Июль',
-    August: 'Авг',
-    September: 'Сент',
-    October: 'Окт',
-    November: 'Нояб',
-    December: 'Дек',
-  };
+ 
   const [period, setPeriod] = useState<Option["value"]>("month");
   const handleMonthSelect = (period: string) => {
     setPeriod(period);
@@ -48,7 +35,7 @@ const App = () => {
         selected={selectedElement || null}
         onChange={handleMonthSelect}
       />
-      <Chart />
+      <Chart period={period}/>
     </div>
   );
 };

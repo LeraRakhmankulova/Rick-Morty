@@ -1,7 +1,39 @@
+import { FC } from "react";
+import { periodsMock } from "../../mocks/periods.mock";
 import { Bar } from "./Bar";
 import styles from "./index.module.css";
+import { Option } from "../ui/Select/Option";
 
-export const Chart = () => {
+export const Chart: FC<{ period: Option["value"] }> = ({ period }) => {
+  const months: Record<string, string> = {
+    January: "Янв",
+    February: "Фев",
+    March: "Март",
+    April: "Апр",
+    May: "Май",
+    June: "Июнь",
+    July: "Июль",
+    August: "Авг",
+    September: "Сент",
+    October: "Окт",
+    November: "Нояб",
+    December: "Дек",
+  };
+
+  // const months = [
+  //   "Янв",
+  //   "Фев",
+  //   "Март",
+  //   "Апр",
+  //   "Май",
+  //   "Июнь",
+  //   "Июль",
+  //   "Авг",
+  //   "Сент",
+  //   "Окт",
+  //   "Нояб",
+  //   "Дек",
+  // ];
   return (
     <div className={styles.chart}>
       <ul className={styles.chart__values}>
@@ -12,7 +44,16 @@ export const Chart = () => {
         <li>500</li>
         <li>0</li>
       </ul>
-      <Bar/>
+      <div className={styles.chart__bars}>
+        {Object.keys(periodsMock["periods"][0]["graph"]["year"]).map(
+          (el: string, idx: number) => (
+            <div className={styles.bar__info} key={idx}>
+              <Bar />
+              <div className={styles.date}>{months[el]}</div>
+            </div>
+          )
+        )}
+      </div>
     </div>
   );
 };
